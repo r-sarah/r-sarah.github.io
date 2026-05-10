@@ -2662,12 +2662,14 @@ button.contact-link {
     animation-fill-mode: both;
     z-index: auto;
   }
-  .hero-robot-bg iframe {
+  /* Spline : le sujet n’est pas au centre géométrique de l’iframe — léger offset à droite sur mobile uniquement */
+  .hero-robot-bg iframe,
+  body.light-theme .hero-robot-bg iframe {
     left: 50%;
     right: auto;
     width: min(130vw, 860px);
     height: min(78vh, 620px);
-    transform: translate(-50%, -50%);
+    transform: translate(calc(-50% + 15vw), -50%);
     opacity: 0.6;
   }
   .contact-wrapper { grid-template-columns: 1fr; }
