@@ -177,7 +177,7 @@
       'form.emailPh': 'votre@email.com',
       'form.messageLabel': 'Message',
       'form.messagePh': 'Votre message...',
-      'form.submit': 'Envoyer'
+      'form.submit': 'Envoyer (momentanément indisponible)'
     },
     en: {
       'meta.title': 'Sarah Ranganadane | MSc AI Applied to Business',
@@ -353,7 +353,7 @@
       'form.emailPh': 'your@email.com',
       'form.messageLabel': 'Message',
       'form.messagePh': 'Your message...',
-      'form.submit': 'Send'
+      'form.submit': 'Send (Temporarily out of service)'
     }
   };
 })(window);
