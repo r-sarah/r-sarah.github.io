@@ -125,7 +125,7 @@
         themeToggle.setAttribute('title', 'Basculer le thème');
       }
       const icon = themeToggle.querySelector('.theme-toggle-icon');
-      if (icon) icon.textContent = isLight ? '☀️' : '🌚';
+      if (icon) icon.textContent = isLight ? '☀️' : '🌙';
     }
   }
 
