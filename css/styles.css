@@ -2669,7 +2669,7 @@ button.contact-link {
     right: auto;
     width: min(130vw, 860px);
     height: min(78vh, 620px);
-    top: 62%;
+    top: 70%;
     transform: translate(calc(-50% + 15vw), -50%);
     opacity: 0.6;
   }
