@@ -2667,8 +2667,8 @@ button.contact-link {
   body.light-theme .hero-robot-bg iframe {
     left: 50%;
     right: auto;
-    width: min(130vw, 860px);
-    height: min(78vh, 620px);
+    width: min(100vw, 640px);
+    height: min(60vh, 480px);
     top: 80%;
     transform: translate(calc(-50% + 15vw), -50%);
     opacity: 0.6;
