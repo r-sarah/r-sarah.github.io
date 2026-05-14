@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=chat-mobile-responsive-1">
+  <link rel="stylesheet" href="css/styles.css?v=chat-send-icon-mobile-1">
 </head>
 <body>
   <!-- Navigation -->
@@ -480,12 +480,17 @@
       <form id="portfolio-chat-form" class="portfolio-chat-form">
         <label for="portfolio-chat-input" class="visually-hidden" data-i18n="chat.inputLabel">Votre question</label>
         <input type="text" id="portfolio-chat-input" class="portfolio-chat-input" autocomplete="off" data-i18n-placeholder="chat.placeholder" placeholder="…">
-        <button type="submit" id="portfolio-chat-send" class="portfolio-chat-send btn btn-primary" data-i18n="chat.send">Envoyer</button>
+        <button type="submit" id="portfolio-chat-send" class="portfolio-chat-send btn btn-primary" data-i18n-aria="chat.send.aria" aria-label="Envoyer le message">
+          <span class="portfolio-chat-send-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </span>
+          <span class="portfolio-chat-send-label" data-i18n="chat.send">Envoyer</span>
+        </button>
       </form>
     </div>
   </div>
 
-  <script src="js/i18n-home.js?v=hero-layout-2"></script>
+  <script src="js/i18n-home.js?v=chat-send-aria-1"></script>
   <script src="js/portfolio-chat-config.js?v=2"></script>
   <script src="js/main.js?v=hero-layout-9"></script>
   <script src="js/portfolio-chat.js?v=3"></script>

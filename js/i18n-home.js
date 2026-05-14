@@ -190,6 +190,7 @@
       'chat.placeholder': 'Posez votre question ici…',
       'chat.inputLabel': 'Votre question pour l’assistant',
       'chat.send': 'Envoyer',
+      'chat.send.aria': 'Envoyer le message',
       'chat.offlineReply':
         'L’assistant en ligne n’est pas encore activé. En attendant, parcourez les sections du site ou utilisez le formulaire de contact.',
       'chat.thinking': 'Réflexion…',
@@ -383,6 +384,7 @@
       'chat.placeholder': 'Type your question here…',
       'chat.inputLabel': 'Your question for the assistant',
       'chat.send': 'Send',
+      'chat.send.aria': 'Send message',
       'chat.offlineReply':
         'The live assistant is not enabled yet. In the meantime, browse the site or use the contact form.',
       'chat.thinking': 'Thinking…',
