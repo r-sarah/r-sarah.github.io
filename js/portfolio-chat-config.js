@@ -7,7 +7,7 @@
  * 1) Projet Vercel → variables OPENAI_API_KEY (vraie clé ou sk-xxxx pour mode démo),
  *    CHAT_ALLOWED_ORIGIN = https://<vous>.github.io
  * 2) Déployer → copier l’URL https://<projet>.vercel.app/api/chat
- * 3) Renseigner apiUrl ci-dessous (sans slash final). Laisser '' = message hors ligne sur le site.
+ * 3) apiUrl ci-dessous pointe vers Vercel (sans slash final). '' = hors ligne.
  *
  * Contrat POST (JSON) :
  *   { "message": string, "locale": "fr"|"en",
@@ -17,9 +17,7 @@
 (function (w) {
   'use strict';
   w.PORTFOLIO_CHAT_CONFIG = {
-    // Exemple après déploiement Vercel :
-    // apiUrl: 'https://mon-projet.vercel.app/api/chat',
-    apiUrl: '',
+    apiUrl: 'https://r-sarah-github-io.vercel.app/api/chat',
     maxHistoryMessages: 12
   };
 })(window);
