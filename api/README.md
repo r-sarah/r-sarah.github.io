@@ -21,11 +21,11 @@ Route **serverless** pour Vercel : une fois déployée, renseignez son URL dans 
 
 GitHub Pages ne sert que le site statique ; la clé reste **uniquement** sur Vercel.
 
-## Test local
+## Test local (`vercel dev`)
+
+Créez un fichier **`.env.local`** à la racine du dépôt (non versionné) avec les mêmes noms de variables que sur Vercel, puis :
 
 ```bash
 npm i -g vercel
 vercel dev
 ```
-
-Copiez `api/.env.example` vers `.env.local` à la **racine** du dépôt pour charger les variables en local.
