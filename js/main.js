@@ -618,7 +618,7 @@
   (function initClickInteractionFeedback() {
     var selector = [
       '.btn',
-      'button:not(#nav-toggle):not(#lang-toggle)',
+      'button:not(#nav-toggle):not(#lang-toggle):not(#portfolio-chat-launcher):not(#portfolio-chat-close):not(#portfolio-chat-send):not(.portfolio-chat-chip)',
       '.project-card-link',
       '.project-premium-card',
       '.bento-card',
@@ -637,6 +637,7 @@
         if (!el) return;
         if (e.target.closest('#nav-toggle')) return;
         if (e.target.closest('#lang-toggle')) return;
+        if (e.target.closest('#portfolio-chat-root')) return;
 
         if (el._uiFeedbackTimer) clearTimeout(el._uiFeedbackTimer);
         el.classList.remove('ui-interaction-active');

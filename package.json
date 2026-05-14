@@ -1,0 +1,8 @@
+{
+  "name": "portfolio-chat-api",
+  "private": true,
+  "description": "Metadata for Vercel serverless (api/chat.js). Site statique reste sur GitHub Pages.",
+  "engines": {
+    "node": ">=18"
+  }
+}

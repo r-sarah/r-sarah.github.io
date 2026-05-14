@@ -16,3 +16,9 @@ Desktop.ini
 
 # Fichiers personnels / brouillons (hors dépôt)
 prompt cursor.docx
+
+# Secrets & Node (API Vercel locale)
+.env
+.env.local
+.env.*.local
+node_modules/

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=hero-layout-19">
+  <link rel="stylesheet" href="css/styles.css?v=chat-panel-over-fab-1">
 </head>
 <body>
   <!-- Navigation -->
@@ -461,8 +461,34 @@
     </div>
   </footer>
 
+  <div id="portfolio-chat-root" class="portfolio-chat-root">
+    <button type="button" id="portfolio-chat-launcher" class="portfolio-chat-launcher" aria-haspopup="dialog" aria-expanded="false" aria-controls="portfolio-chat-panel" data-i18n-aria="chat.launcher.aria">
+      <span class="portfolio-chat-launcher-icon" aria-hidden="true">💬</span>
+    </button>
+    <div id="portfolio-chat-panel" class="portfolio-chat-panel" role="dialog" aria-modal="true" aria-labelledby="portfolio-chat-title" hidden>
+      <div class="portfolio-chat-header">
+        <h2 id="portfolio-chat-title" class="portfolio-chat-title" data-i18n="chat.title">Assistant portfolio</h2>
+        <button type="button" id="portfolio-chat-close" class="portfolio-chat-icon-btn" data-i18n-aria="chat.close.aria" aria-label="Réduire">−</button>
+      </div>
+      <div id="portfolio-chat-suggestions" class="portfolio-chat-suggestions">
+        <button type="button" class="portfolio-chat-chip" data-i18n="chat.s1" data-chat-suggestion-key="chat.s1"></button>
+        <button type="button" class="portfolio-chat-chip" data-i18n="chat.s2" data-chat-suggestion-key="chat.s2"></button>
+        <button type="button" class="portfolio-chat-chip" data-i18n="chat.s3" data-chat-suggestion-key="chat.s3"></button>
+        <button type="button" class="portfolio-chat-chip" data-i18n="chat.s4" data-chat-suggestion-key="chat.s4"></button>
+      </div>
+      <div id="portfolio-chat-messages" class="portfolio-chat-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+      <form id="portfolio-chat-form" class="portfolio-chat-form">
+        <label for="portfolio-chat-input" class="visually-hidden" data-i18n="chat.inputLabel">Votre question</label>
+        <input type="text" id="portfolio-chat-input" class="portfolio-chat-input" autocomplete="off" data-i18n-placeholder="chat.placeholder" placeholder="…">
+        <button type="submit" id="portfolio-chat-send" class="portfolio-chat-send btn btn-primary" data-i18n="chat.send">Envoyer</button>
+      </form>
+    </div>
+  </div>
+
   <script src="js/i18n-home.js?v=hero-layout-2"></script>
-  <script src="js/main.js?v=hero-layout-8"></script>
+  <script src="js/portfolio-chat-config.js?v=2"></script>
+  <script src="js/main.js?v=hero-layout-9"></script>
+  <script src="js/portfolio-chat.js?v=3"></script>
 </body>
 </html>
 

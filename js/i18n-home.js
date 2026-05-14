@@ -177,7 +177,24 @@
       'form.emailPh': 'votre@email.com',
       'form.messageLabel': 'Message',
       'form.messagePh': 'Votre message...',
-      'form.submit': 'Envoyer (momentanément indisponible)'
+      'form.submit': 'Envoyer (momentanément indisponible)',
+      'chat.launcher.aria': 'Ouvrir l’assistant portfolio',
+      'chat.title': 'Assistant portfolio',
+      'chat.close.aria': 'Fermer le chat',
+      'chat.s1': 'Quelles sont vos compétences techniques ?',
+      'chat.s2': 'Parlez-moi de votre parcours et de votre expérience.',
+      'chat.s3': 'Quelle est votre formation ?',
+      'chat.s4': 'Quels projets récents mettez-vous en avant ?',
+      'chat.welcome':
+        'Bonjour ! Posez-moi des questions sur le parcours, les compétences ou les projets présentés sur ce site. (Réponses IA activables plus tard.)',
+      'chat.placeholder': 'Posez votre question ici…',
+      'chat.inputLabel': 'Votre question pour l’assistant',
+      'chat.send': 'Envoyer',
+      'chat.offlineReply':
+        'L’assistant en ligne n’est pas encore activé. En attendant, parcourez les sections du site ou utilisez le formulaire de contact.',
+      'chat.thinking': 'Réflexion…',
+      'chat.error':
+        'Désolé, une erreur s’est produite. Réessayez plus tard ou utilisez le formulaire de contact.'
     },
     en: {
       'meta.title': 'Sarah Ranganadane | MSc AI Applied to Business',
@@ -353,7 +370,24 @@
       'form.emailPh': 'your@email.com',
       'form.messageLabel': 'Message',
       'form.messagePh': 'Your message...',
-      'form.submit': 'Send (Temporarily out of service)'
+      'form.submit': 'Send (Temporarily out of service)',
+      'chat.launcher.aria': 'Open portfolio assistant',
+      'chat.title': 'Portfolio assistant',
+      'chat.close.aria': 'Close chat',
+      'chat.s1': 'What are your technical skills?',
+      'chat.s2': 'Tell me about your background and experience.',
+      'chat.s3': 'What is your education?',
+      'chat.s4': 'Which recent projects do you highlight?',
+      'chat.welcome':
+        'Hi! Ask me about the path, skills, or projects on this site. (AI answers can be enabled later.)',
+      'chat.placeholder': 'Type your question here…',
+      'chat.inputLabel': 'Your question for the assistant',
+      'chat.send': 'Send',
+      'chat.offlineReply':
+        'The live assistant is not enabled yet. In the meantime, browse the site or use the contact form.',
+      'chat.thinking': 'Thinking…',
+      'chat.error':
+        'Sorry, something went wrong. Try again later or use the contact form.'
     }
   };
 })(window);
