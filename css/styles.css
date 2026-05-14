@@ -2736,12 +2736,14 @@ button.contact-link {
   --chat-border-soft: rgba(148, 163, 184, 0.14);
   --chat-text-bubble: #f1f5f9;
   --chat-chip-text: #e2e8f0;
+  --chat-panel-max: 23.5rem;
   position: fixed;
   right: max(1rem, env(safe-area-inset-right, 0px));
   bottom: max(0.35rem, env(safe-area-inset-bottom, 0px));
   z-index: 1400;
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
+  width: min(100vw - 2rem, var(--chat-panel-max));
   min-width: var(--chat-fab-size);
   min-height: var(--chat-fab-size);
 }
@@ -2825,7 +2827,7 @@ body.light-theme .portfolio-chat-launcher {
   right: 0;
   bottom: 0;
   z-index: 2;
-  width: min(100vw - 2rem, 23.5rem);
+  width: min(100vw - 2rem, var(--chat-panel-max, 23.5rem));
   max-height: min(
     calc(100dvh - max(0.35rem, env(safe-area-inset-bottom, 0px)) - max(0.75rem, env(safe-area-inset-top, 0px)) - 0.75rem),
     42rem
@@ -3143,9 +3145,13 @@ body.light-theme .portfolio-chat-send {
 }
 
 @media (max-width: 480px) {
+  .portfolio-chat-root {
+    width: min(calc(100vw - 1.25rem), var(--chat-panel-max));
+    right: max(0.5rem, env(safe-area-inset-right, 0px));
+  }
   .portfolio-chat-panel {
-    width: min(100vw - 1.25rem, 100%);
-    right: max(0px, calc(env(safe-area-inset-right, 0px) - 0.25rem));
+    width: min(calc(100vw - 1.25rem), var(--chat-panel-max));
+    right: 0;
     max-height: min(
       calc(100dvh - max(0.35rem, env(safe-area-inset-bottom, 0px)) - max(0.75rem, env(safe-area-inset-top, 0px)) - 0.5rem),
       44rem
