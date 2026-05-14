@@ -1,13 +1,3 @@
-/**
- * Vercel Serverless Function — POST /api/chat
- *
- * Env (Vercel dashboard ou .env.local pour `vercel dev`) :
- *   OPENAI_API_KEY      — clé OpenAI (ne pas committer). Mode mock si absente / clé factice.
- *   OPENAI_MODEL        — optionnel, défaut gpt-4o-mini
- *   CHAT_ALLOWED_ORIGIN — CORS, ex. https://votrepseudo.github.io (ou * en dev)
- *   PORTFOLIO_CONTEXT   — optionnel, texte sur vous pour le prompt système
- *   OPENAI_USE_MOCK=1   — force le mode démo
- */
 
 function isMockKey(key) {
   if (!key || typeof key !== 'string') return true;
