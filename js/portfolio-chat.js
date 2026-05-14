@@ -193,7 +193,6 @@
       setOpen(panel.hidden);
     });
   }
-  /* Fermer : capture sur #portfolio-chat-root pour que le clic soit traité en premier */
   if (root) {
     root.addEventListener(
       'click',

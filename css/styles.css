@@ -2725,7 +2725,6 @@ button.contact-link {
   }
 }
 
-/* ===== Chat portfolio (aucun secret — apiUrl dans js/portfolio-chat-config.js) ===== */
 .portfolio-chat-root {
   --chat-fab-size: 3.625rem;
   --chat-accent-a: #22d3ee;

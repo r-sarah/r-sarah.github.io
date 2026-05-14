@@ -1,4 +1,3 @@
-
 function isMockKey(key) {
   if (!key || typeof key !== 'string') return true;
   const t = key.trim();
@@ -23,13 +22,13 @@ function corsHeaders() {
 function mockReply(locale) {
   if (locale === 'en') {
     return (
-      'Demo mode: no real OpenAI key is configured yet. ' +
-      'Set OPENAI_API_KEY in your Vercel project (and CHAT_ALLOWED_ORIGIN to your GitHub Pages URL), then redeploy.'
+      'Demo mode: no production API key is configured. ' +
+      'Set OPENAI_API_KEY and CHAT_ALLOWED_ORIGIN in your server environment variables, then redeploy.'
     );
   }
   return (
-    'Mode démo : aucune vraie clé OpenAI n’est configurée. ' +
-    'Ajoutez OPENAI_API_KEY dans Vercel (et CHAT_ALLOWED_ORIGIN vers votre URL github.io), puis redéployez.'
+    'Mode démo : aucune clé API de production n’est configurée. ' +
+    'Ajoutez OPENAI_API_KEY et CHAT_ALLOWED_ORIGIN dans les variables d’environnement de votre serveur, puis redéployez.'
   );
 }
 
