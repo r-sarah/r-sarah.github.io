@@ -1,7 +1,7 @@
 /**
  * Chat portfolio — fichier safe pour dépôt PUBLIC (aucune clé API ici).
  *
- * Backend inclus dans ce repo : `api/chat.js` (déployé sur Vercel, voir `api/README.md`).
+ * Backend inclus dans ce repo : `api/chat.js` (déployé sur Vercel).
  *
  * Étapes :
  * 1) Projet Vercel → variables OPENAI_API_KEY (vraie clé ou sk-xxxx pour mode démo),
