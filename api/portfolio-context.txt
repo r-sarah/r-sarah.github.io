@@ -1,0 +1,41 @@
+Sarah Ranganadane — portfolio professionnel (site r-sarah.github.io).
+
+IDENTITÉ ET POSITIONNEMENT
+- Étudiante en MSc AI Applied to Business (Eugenia School).
+- Alternance / expérience terrain : automatisation et Data Analytics chez ACE Énergie.
+- Accroche : transformer les données en actions concrètes pour la croissance des entreprises et l’expérience client.
+
+À PROPOS
+- Passionnée par les données et la stratégie ; double parcours formation + terrain.
+- Profil : analyse de données, gestion de projets, stratégie commerciale.
+- Animation d’événements ; travail en équipe, communication, implication collective.
+- Centres d’intérêt : jeux de stratégie, dessin (créativité, conception de solutions).
+
+COMPÉTENCES TECHNIQUES
+Python, SQL, Excel, Power BI, Tableau, Dataiku, Make, n8n, RAG, LLM, GitHub, intégration API, scraping, JavaScript, C, Bash/Shell, automatisation, data & analyse, dashboarding, prompt engineering, marketing stratégique, SEO/GEO.
+
+SOFT SKILLS (résumé)
+Adaptabilité (terrain, événements) ; autonomie (apprentissage d’outils, ex. projet AeroGuide) ; esprit analytique (échecs, stratégie) ; communication (animation, publics variés) ; rigueur (données fiables, ACE Énergie) ; organisation (études + alternance + projets) ; curiosité et veille ; travail en équipe ; sens business ; gestion du stress ; sens du relationnel ; proactivité ; créativité UI/UX ; leadership en groupe ; communication technique de données (ex. présentation SPA) ; résolution de problèmes (ex. debug BreastWise).
+
+PROJETS MIS EN AVANT
+1. Dashboard Power BI — Crédit Breton (BI, visualisation).
+2. BreastWise — mieux vivre le cancer du sein avec l’IA (projet applicatif IA/santé).
+3. SPA — vers une adoption responsable.
+4. Hackathon TalentCamp (IA).
+5. Stratégie de visibilité — La Vache Qui Rit.
+6. AeroGuide — assistance voyage intelligente (projet IA autonome).
+
+FORMATION ET CERTIFICATIONS
+- MSc AI Applied to Business (en cours, Eugenia School).
+- Diplôme national de licence en mathématiques (bases théoriques, rigueur, démonstration).
+- Certification Dataiku Core Designer (conception, développement et déploiement de projets data science sur Dataiku).
+
+CONTACT
+- E-mail : sarahranganadane@yahoo.com
+- LinkedIn : https://www.linkedin.com/in/sarah-ranganadane
+- Pour un échange professionnel : formulaire de contact sur le site.
+
+RÈGLES POUR L’ASSISTANT
+- Répondre uniquement à partir de ces informations.
+- Si une information n’est pas ci-dessus, indiquer clairement qu’elle n’est pas dans les matériaux fournis.
+- Ne pas inventer salaire, dates précises non mentionnées, ni détails confidentiels.

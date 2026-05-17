@@ -186,7 +186,7 @@
       'chat.s3': 'Quelle est votre formation ?',
       'chat.s4': 'Quels projets récents mettez-vous en avant ?',
       'chat.welcome':
-        'Bonjour ! Posez-moi des questions sur le parcours, les compétences ou les projets présentés sur ce site. (Réponses IA activables plus tard.)',
+        'Bonjour ! Posez-moi des questions sur le parcours, les compétences ou les projets présentés sur ce site.',
       'chat.placeholder': 'Posez votre question ici…',
       'chat.inputLabel': 'Votre question pour l’assistant',
       'chat.send': 'Envoyer',
@@ -386,7 +386,7 @@
       'chat.s3': 'What is your education?',
       'chat.s4': 'Which recent projects do you highlight?',
       'chat.welcome':
-        'Hi! Ask me about the path, skills, or projects on this site. (AI answers can be enabled later.)',
+        'Hi! Ask me about the path, skills, or projects on this site.',
       'chat.placeholder': 'Type your question here…',
       'chat.inputLabel': 'Your question for the assistant',
       'chat.send': 'Send',

@@ -1,3 +1,24 @@
+const fs = require('fs');
+const path = require('path');
+
+let cachedPortfolioContext;
+
+function loadPortfolioContext() {
+  if (cachedPortfolioContext !== undefined) return cachedPortfolioContext;
+  const fromEnv = (process.env.PORTFOLIO_CONTEXT || '').trim();
+  if (fromEnv) {
+    cachedPortfolioContext = fromEnv;
+    return cachedPortfolioContext;
+  }
+  try {
+    const filePath = path.join(__dirname, 'portfolio-context.txt');
+    cachedPortfolioContext = fs.readFileSync(filePath, 'utf8').trim();
+  } catch (e) {
+    cachedPortfolioContext = '';
+  }
+  return cachedPortfolioContext;
+}
+
 function isMockKey(key) {
   if (!key || typeof key !== 'string') return true;
   const t = key.trim();
@@ -272,7 +293,7 @@ module.exports = async function handler(req, res) {
 
   const apiKey = (process.env.OPENAI_API_KEY || '').trim();
   const model = (process.env.OPENAI_MODEL || 'gpt-4o-mini').trim();
-  const context = (process.env.PORTFOLIO_CONTEXT || '').toString().trim();
+  const context = loadPortfolioContext();
 
   const systemParts = [
     'You are a helpful assistant for a personal portfolio website.',

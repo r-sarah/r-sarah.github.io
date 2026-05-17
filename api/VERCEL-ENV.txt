@@ -12,7 +12,7 @@ Optionnel :
   CHAT_RATE_LIMIT_PER_MIN=10
   CHAT_RATE_LIMIT_PER_DAY=50
   CHAT_MAX_MESSAGE_LENGTH=1500
-  PORTFOLIO_CONTEXT=(texte sur parcours / compétences / projets)
+  PORTFOLIO_CONTEXT=(optionnel — remplace api/portfolio-context.txt si défini)
   OPENAI_MODEL=gpt-4o-mini
 
 Upstash : https://console.upstash.com → Create Database → onglet REST API → copier URL + Token.
