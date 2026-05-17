@@ -28,8 +28,6 @@
       'page.b5.body':
         "J'ai défendu cette stratégie devant un jury pour démontrer comment transformer un risque de réputation en opportunité de croissance digitale.",
       'page.gallery.title': 'Aperçus Audit, GEO & Démo technique',
-      'page.gallery.intro':
-        'Les captures clés sont regroupées ici pour visualiser rapidement le diagnostic initial, le plan GEO et la démonstration du prototype.',
       'page.img1.alt': "Capture d'audit de visibilité du site La Vache qui rit",
       'page.cap1': 'Audit côté SEO et plan de recommandation.',
       'page.img2.alt': 'Capture du prototype v2 du site La Vache qui rit',
@@ -71,8 +69,6 @@
       'page.b5.body':
         'I pitched this strategy to show how reputation risk can become digital growth.',
       'page.gallery.title': 'Audit, GEO & technical demo previews',
-      'page.gallery.intro':
-        'Key screenshots: initial diagnosis, GEO plan, and prototype demo.',
       'page.img1.alt': 'Visibility audit screenshot — La Vache Qui Rit site',
       'page.cap1': 'SEO-side audit and recommendation plan.',
       'page.img2.alt': 'La Vache Qui Rit site prototype v2 screenshot',
