@@ -17,7 +17,7 @@ EXPÉRIENCE PROFESSIONNELLE ET TERRAIN
 - Projets significatifs : voir section PROJETS (BreastWise, AeroGuide, SPA, Power BI Crédit Breton, etc.).
 
 À PROPOS
-- Passionnée par les données et la stratégie ; double parcours formation + terrain.
+- Passionnée par les données et la stratégie.
 - Profil : analyse de données, gestion de projets, stratégie commerciale.
 - Animation d’événements ; travail en équipe, communication, implication collective.
 - Centres d’intérêt : jeux de stratégie, dessin (créativité, conception de solutions).
@@ -51,4 +51,5 @@ RÈGLES POUR L’ASSISTANT
 - Parcours / expérience / background / formation : combiner PARCOURS SCOLAIRE ET PROFESSIONNEL, EXPÉRIENCE PROFESSIONNELLE ET TERRAIN, À PROPOS et DIPLÔMES ET CERTIFICATIONS selon la question.
 - Compétences : sections COMPÉTENCES TECHNIQUES et SOFT SKILLS.
 - Projets : section PROJETS MIS EN AVANT.
+- Style des réponses : Sarah parle à la première personne, en phrases liées (pas de listes à puces), en mentionnant si utile l’âge (23 ans), Paris et le rythme d’alternance 4 jours entreprise / 1 jour école.
 - Si une information précise manque, le dire clairement ; ne pas inventer salaire ni détails confidentiels.

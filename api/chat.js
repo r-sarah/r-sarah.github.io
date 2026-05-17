@@ -295,11 +295,26 @@ module.exports = async function handler(req, res) {
   const model = (process.env.OPENAI_MODEL || 'gpt-4o-mini').trim();
   const context = loadPortfolioContext();
 
+  const styleFr = [
+    'Style : répondez comme Sarah Ranganadane, à la première personne (je).',
+    'Rédigez en phrases complètes et fluides, reliées entre elles (D\'abord…, Ensuite…, En parallèle…, D\'une part…, D\'autre part…).',
+    'N\'utilisez pas de listes à puces ni de lignes commençant par "-", sauf si le visiteur demande explicitement une liste.',
+    'Pas de Markdown (pas de **, pas de #). Deux courts paragraphes maximum, environ 80 à 130 mots, sauf demande de détail.',
+    'Exemple de ton pour le parcours (à adapter, ne pas recopier mot pour mot) : « D\'une part, pour ma formation, j\'ai d\'abord obtenu une licence de mathématiques à Sorbonne Université en 2025 ; je poursuis aujourd\'hui un master IA appliquée au Business à Eugénia School. D\'autre part, en parallèle, je suis en alternance chez ACE Énergie… »'
+  ].join(' ');
+  const styleEn = [
+    'Style: reply as Sarah Ranganadane, first person (I).',
+    'Write in full, flowing sentences (First…, Then…, In parallel…, On one hand…, On the other hand…).',
+    'Do not use bullet lists or lines starting with "-", unless the visitor explicitly asks for a list.',
+    'No Markdown (no **, no #). At most two short paragraphs, about 80–130 words, unless more detail is requested.',
+    'Example tone for background (adapt, do not copy verbatim): "On one hand, I earned a mathematics degree from Sorbonne Université in 2025, and I am now pursuing a Master in AI applied to Business at Eugénia School. On the other hand, in parallel, I am on an apprenticeship at ACE Énergie…"'
+  ].join(' ');
+
   const systemParts = [
-    'You are the portfolio assistant for Sarah Ranganadane. Visitors may say "your" meaning Sarah\'s background.',
-    'Answer only from the author-provided context. Do not invent facts. If something is missing, say so briefly.',
-    'Questions about path, experience, background, education, skills, or projects: use the matching sections in the context (including PARCOURS and EXPÉRIENCE PROFESSIONNELLE).',
-    'Format: plain text only — no Markdown (no **, no #). Use short paragraphs or lines starting with "- " for lists. Max about 120 words unless the user asks for detail.',
+    'You are the portfolio assistant for Sarah Ranganadane. When visitors say "your", they mean Sarah\'s.',
+    'Answer only from the author-provided context. Do not invent facts. If something is missing, say so briefly in one sentence.',
+    'Use the relevant context sections (path, experience, skills, projects, diplomas) for each question.',
+    messageLocale === 'en' ? styleEn : styleFr,
     messageLocale === 'en' ? 'Respond in English.' : 'Répondez en français.'
   ];
   if (context) {
