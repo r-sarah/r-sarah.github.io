@@ -1,0 +1,21 @@
+Variables Vercel (Settings → Environment Variables → Production)
+
+Requis pour l’assistant IA :
+  OPENAI_API_KEY
+  CHAT_ALLOWED_ORIGIN=https://r-sarah.github.io,https://r-sarah-github-io.vercel.app
+
+Requis pour le rate limit (Upstash) :
+  UPSTASH_REDIS_REST_URL      (HTTPS, console Upstash → base Redis → REST API)
+  UPSTASH_REDIS_REST_TOKEN    (token Standard, pas Read-Only)
+
+Optionnel :
+  CHAT_RATE_LIMIT_PER_MIN=10
+  CHAT_RATE_LIMIT_PER_DAY=50
+  CHAT_MAX_MESSAGE_LENGTH=1500
+  PORTFOLIO_CONTEXT=(texte sur parcours / compétences / projets)
+  OPENAI_MODEL=gpt-4o-mini
+
+Upstash : https://console.upstash.com → Create Database → onglet REST API → copier URL + Token.
+Vercel : ajouter les variables → Deployments → Redeploy (dernier déploiement).
+
+Ne jamais committer de clés dans le dépôt Git.

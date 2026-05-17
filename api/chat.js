@@ -88,35 +88,32 @@ function upstashBase() {
   return { base: base, token: token };
 }
 
-async function upstashIncr(key) {
+function pipelineCount(row) {
+  if (!row || row.error) return null;
+  const n = row.result;
+  if (typeof n === 'number' && Number.isFinite(n)) return n;
+  const parsed = parseInt(n, 10);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+async function upstashPipeline(commands) {
   const cfg = upstashBase();
-  if (!cfg) return null;
+  if (!cfg || !commands.length) return null;
   try {
-    const res = await fetch(cfg.base + '/incr/' + encodeURIComponent(key), {
+    const res = await fetch(cfg.base + '/pipeline', {
       method: 'POST',
-      headers: { Authorization: 'Bearer ' + cfg.token }
+      headers: {
+        Authorization: 'Bearer ' + cfg.token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(commands)
     });
     if (!res.ok) return null;
     const data = await res.json();
-    const n = data && data.result;
-    return typeof n === 'number' ? n : parseInt(n, 10);
+    return Array.isArray(data) ? data : null;
   } catch (e) {
     return null;
   }
-}
-
-async function upstashExpire(key, seconds) {
-  const cfg = upstashBase();
-  if (!cfg) return;
-  try {
-    await fetch(
-      cfg.base + '/expire/' + encodeURIComponent(key) + '/' + String(seconds),
-      {
-        method: 'POST',
-        headers: { Authorization: 'Bearer ' + cfg.token }
-      }
-    );
-  } catch (e) {}
 }
 
 async function checkRateLimit(ip) {
@@ -133,14 +130,22 @@ async function checkRateLimit(ip) {
     ':' +
     new Date().toISOString().slice(0, 10);
 
-  const minCount = await upstashIncr(minuteKey);
-  if (minCount === null) return { ok: true, skipped: true };
-  if (minCount === 1) await upstashExpire(minuteKey, 60);
-  if (minCount > perMin) return { ok: false, reason: 'minute' };
+  const rows = await upstashPipeline([
+    ['INCR', minuteKey],
+    ['INCR', dayKey]
+  ]);
+  if (!rows || rows.length < 2) return { ok: false, reason: 'storage' };
 
-  const dayCount = await upstashIncr(dayKey);
-  if (dayCount === null) return { ok: true, skipped: true };
-  if (dayCount === 1) await upstashExpire(dayKey, 86400);
+  const minCount = pipelineCount(rows[0]);
+  const dayCount = pipelineCount(rows[1]);
+  if (minCount === null || dayCount === null) return { ok: false, reason: 'storage' };
+
+  const expireCmds = [];
+  if (minCount === 1) expireCmds.push(['EXPIRE', minuteKey, 60]);
+  if (dayCount === 1) expireCmds.push(['EXPIRE', dayKey, 86400]);
+  if (expireCmds.length) await upstashPipeline(expireCmds);
+
+  if (minCount > perMin) return { ok: false, reason: 'minute' };
   if (dayCount > perDay) return { ok: false, reason: 'day' };
 
   return { ok: true, skipped: false };
@@ -245,6 +250,10 @@ module.exports = async function handler(req, res) {
 
   const rl = await checkRateLimit(clientIp(req));
   if (!rl.ok) {
+    if (rl.reason === 'storage') {
+      sendJson(res, 503, headers, { error: 'Service temporarily unavailable' });
+      return;
+    }
     sendJson(res, 429, headers, {
       error: 'Rate limit exceeded',
       reply: rateLimitReply(messageLocale)
