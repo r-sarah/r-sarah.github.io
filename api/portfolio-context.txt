@@ -3,13 +3,12 @@ Sarah Ranganadane — portfolio professionnel (site r-sarah.github.io).
 IDENTITÉ ET POSITIONNEMENT
 - Sarah Ranganadane, 23 ans, habite à Paris.
 - Accroche : transformer les données en actions concrètes pour la croissance des entreprises et l’expérience client.
-- Parcours actuel : en formation Master IA appliquée au Business à Eugénia School, en parallèle alternante chez ACE Énergie.
 
 PARCOURS SCOLAIRE ET PROFESSIONNEL
-1. Licence de mathématiques — Sorbonne Université (diplôme obtenu en 2025).
-2. Master IA appliquée au Business — Eugénia School (formation en cours actuellement).
-3. En parallèle du master : alternance chez ACE Énergie, poste Chargée d’Automatisation & Data Analytics.
-   Rythme d’alternance : 4 jours par semaine en entreprise, 1 jour par semaine à l’école.
+1. Licence de mathématiques à Sorbonne Université, diplômée en 2025.
+2. Master IA appliquée au Business à Eugénia School — formation en cours.
+3. Alternance en parallèle du master : ACE Énergie, Chargée d’Automatisation & Data Analytics.
+   Rythme : 4 jours par semaine en entreprise, 1 jour par semaine à l’école.
 
 À PROPOS
 - Passionnée par les données et la stratégie ; double parcours formation + terrain.
@@ -31,11 +30,10 @@ PROJETS MIS EN AVANT
 5. Stratégie de visibilité — La Vache Qui Rit.
 6. AeroGuide — assistance voyage intelligente (projet IA autonome).
 
-FORMATION ET CERTIFICATIONS
-- Licence de mathématiques, Sorbonne Université — diplômée en 2025.
-- Master IA appliquée au Business, Eugénia School — en cours.
-- Alternance : ACE Énergie, Chargée d’Automatisation & Data Analytics (4 jours/semaine en entreprise, 1 jour/semaine à l’école).
-- Certification Dataiku Core Designer (conception, développement et déploiement de projets data science sur Dataiku).
+DIPLÔMES ET CERTIFICATIONS
+- Diplôme : Licence de mathématiques, Sorbonne Université (obtenue en 2025).
+- En cours : Master IA appliquée au Business, Eugénia School (diplôme pas encore obtenu).
+- Certification : Dataiku Core Designer — conception, développement et déploiement de projets data science sur Dataiku.
 
 CONTACT
 - E-mail : sarahranganadane@yahoo.com
