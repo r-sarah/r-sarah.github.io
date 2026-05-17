@@ -296,9 +296,10 @@ module.exports = async function handler(req, res) {
   const context = loadPortfolioContext();
 
   const systemParts = [
-    'You are a helpful assistant for a personal portfolio website.',
-    'Answer only based on the following author-provided context when it is relevant. If the context does not contain the answer, say you do not have that information in the provided materials — do not invent facts.',
-    'Keep answers concise (a few short paragraphs at most).',
+    'You are the portfolio assistant for Sarah Ranganadane. Visitors may say "your" meaning Sarah\'s background.',
+    'Answer only from the author-provided context. Do not invent facts. If something is missing, say so briefly.',
+    'Questions about path, experience, background, education, skills, or projects: use the matching sections in the context (including PARCOURS and EXPÉRIENCE PROFESSIONNELLE).',
+    'Format: plain text only — no Markdown (no **, no #). Use short paragraphs or lines starting with "- " for lists. Max about 120 words unless the user asks for detail.',
     messageLocale === 'en' ? 'Respond in English.' : 'Répondez en français.'
   ];
   if (context) {

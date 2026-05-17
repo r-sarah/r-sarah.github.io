@@ -69,8 +69,19 @@
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
+  function plainAssistantText(text) {
+    if (!text) return '';
+    return String(text)
+      .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/\*([^*]+)\*/g, '$1')
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/`([^`]+)`/g, '$1')
+      .trim();
+  }
+
   function appendBubble(role, text, extraClass) {
     if (!messagesEl) return;
+    var display = role === 'assistant' ? plainAssistantText(text) : text;
     var wrap = document.createElement('div');
     wrap.className =
       'portfolio-chat-msg portfolio-chat-msg--' +
@@ -78,7 +89,7 @@
       (extraClass ? ' ' + extraClass : '');
     var bubble = document.createElement('div');
     bubble.className = 'portfolio-chat-msg-bubble';
-    bubble.textContent = text;
+    bubble.textContent = display;
     wrap.appendChild(bubble);
     messagesEl.appendChild(wrap);
     scrollMessagesToEnd();
@@ -187,7 +198,7 @@
         });
       })
       .then(function (data) {
-        var reply = parseReply(data).trim();
+        var reply = plainAssistantText(parseReply(data).trim());
         if (!reply) reply = t('chat.error');
         thinking.remove();
         appendBubble('assistant', reply);
