@@ -272,4 +272,6 @@
       messagesEl.querySelector('.portfolio-chat-msg--thinking .portfolio-chat-msg-bubble');
     if (thinkingEl) thinkingEl.textContent = t('chat.thinking');
   });
+
+  setOpen(true);
 })();
