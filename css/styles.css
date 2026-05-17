@@ -863,11 +863,11 @@ body.light-theme .lang-toggle {
 }
 .certification-card {
   position: relative;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-start;
   min-height: 100%;
   padding: 1.05rem;
-  text-align: center;
+  text-align: left;
   cursor: pointer;
   outline: none;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -886,15 +886,30 @@ body.light-theme .lang-toggle {
     0 20px 40px rgba(2, 8, 23, 0.48),
     0 0 0 1px rgba(34, 211, 238, 0.22);
 }
-.certification-card .skills-card-logo {
+.certification-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   width: 100%;
-  height: 180px;
+}
+.certification-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 18px rgba(2, 8, 23, 0.35);
+}
+.certification-preview {
+  display: none;
+  width: 100%;
+  margin: 0;
   border-radius: 14px;
-  margin-bottom: 0.55rem;
-  object-fit: cover;
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 12px 24px rgba(2, 8, 23, 0.4);
-  transition: height var(--transition), transform var(--transition), object-fit var(--transition);
+  object-fit: contain;
+  background: rgba(2, 8, 23, 0.45);
 }
 .certification-card::after {
   content: '+';
@@ -937,10 +952,10 @@ body.light-theme .lang-toggle {
 .certification-close:hover {
   background: rgba(34, 211, 238, 0.75);
 }
-.certification-card span {
-  display: block;
-  width: 100%;
-  text-align: center;
+.certification-header span {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.35;
@@ -980,18 +995,26 @@ body.light-theme .lang-toggle {
     0 0 0 1px rgba(34, 211, 238, 0.28);
   animation: none;
   padding: 1.2rem;
+  align-items: center;
+  text-align: center;
 }
 .certification-card.is-open:hover {
   transform: translate(-50%, -50%);
 }
+.certification-card.is-open .certification-header {
+  justify-content: center;
+}
+.certification-card.is-open .certification-header span {
+  flex: 0 1 auto;
+  text-align: center;
+}
 .certification-card.is-open::after {
   opacity: 0;
 }
-.certification-card.is-open .skills-card-logo {
-  width: 100%;
+.certification-card.is-open .certification-preview {
+  display: block;
   height: min(56vh, 500px);
-  object-fit: contain;
-  background: rgba(2, 8, 23, 0.45);
+  margin-top: 0.75rem;
   border-radius: 16px;
 }
 .certification-card.is-open .certification-close {
@@ -1001,6 +1024,7 @@ body.light-theme .lang-toggle {
   max-height: 240px;
   opacity: 1;
   margin-top: 0.5rem;
+  margin-inline: auto;
   transform: translateY(0);
 }
 body.certification-overlay-open::before {
@@ -1052,11 +1076,12 @@ body.light-theme .certification-card {
     0 14px 30px rgba(15, 23, 42, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
-body.light-theme .certification-card .skills-card-logo {
+body.light-theme .certification-icon,
+body.light-theme .certification-preview {
   border-color: rgba(15, 23, 42, 0.12);
   box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
 }
-body.light-theme .certification-card span {
+body.light-theme .certification-header span {
   text-shadow: none;
 }
 body.light-theme .certification-card::after {

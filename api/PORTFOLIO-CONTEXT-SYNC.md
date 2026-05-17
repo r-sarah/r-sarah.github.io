@@ -77,3 +77,4 @@ Après toute modification du contexte : **commit + push** → attendre le redepl
 ## Mémoire Cursor
 
 Lors d'une modification du portfolio, indiquer à l'agent : **« Suis `api/PORTFOLIO-CONTEXT-SYNC.md` »**.
+
