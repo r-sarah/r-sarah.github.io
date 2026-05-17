@@ -195,7 +195,13 @@
         'L’assistant en ligne n’est pas encore activé. En attendant, parcourez les sections du site ou utilisez le formulaire de contact.',
       'chat.thinking': 'Réflexion…',
       'chat.error':
-        'Désolé, une erreur s’est produite. Réessayez plus tard ou utilisez le formulaire de contact.'
+        'Désolé, une erreur s’est produite. Réessayez plus tard ou utilisez le formulaire de contact.',
+      'chat.rateLimited':
+        'Trop de messages en peu de temps. Réessayez dans quelques minutes.',
+      'chat.forbidden':
+        'Requête refusée. Utilisez l’assistant depuis le site portfolio officiel.',
+      'chat.tooLong':
+        'Votre message est trop long. Raccourcissez-le et réessayez.'
     },
     en: {
       'meta.title': 'Sarah Ranganadane | MSc AI Applied to Business',
@@ -389,7 +395,13 @@
         'The live assistant is not enabled yet. In the meantime, browse the site or use the contact form.',
       'chat.thinking': 'Thinking…',
       'chat.error':
-        'Sorry, something went wrong. Try again later or use the contact form.'
+        'Sorry, something went wrong. Try again later or use the contact form.',
+      'chat.rateLimited':
+        'Too many messages in a short time. Please try again in a few minutes.',
+      'chat.forbidden':
+        'Request denied. Please use the assistant from the official portfolio site.',
+      'chat.tooLong':
+        'Your message is too long. Shorten it and try again.'
     }
   };
 })(window);

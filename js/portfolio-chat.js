@@ -108,9 +108,26 @@
     while (history.length > max) history.shift();
   }
 
+  function maxInputLength() {
+    var n = cfg().maxInputLength;
+    return typeof n === 'number' && n > 0 ? n : 1500;
+  }
+
+  function assistantErrorForStatus(status, data) {
+    if (status === 429) {
+      if (data && data.reply) return String(data.reply).trim();
+      return t('chat.rateLimited');
+    }
+    if (status === 403) return t('chat.forbidden');
+    if (status === 413) return t('chat.tooLong');
+    return t('chat.error');
+  }
+
   function sendText(raw) {
     var text = (raw || '').trim();
     if (!text) return;
+    var maxLen = maxInputLength();
+    if (text.length > maxLen) text = text.slice(0, maxLen);
 
     ensureWelcome();
     appendBubble('user', text);
@@ -161,8 +178,10 @@
             data = {};
           }
           if (!res.ok) {
-            var errMsg = (data && (data.error || data.message)) || txt || 'HTTP ' + res.status;
-            throw new Error(errMsg);
+            var err = new Error('HTTP ' + res.status);
+            err.status = res.status;
+            err.data = data;
+            throw err;
           }
           return data;
         });
@@ -175,10 +194,14 @@
         history.push({ role: 'assistant', content: reply });
         trimHistory();
       })
-      .catch(function () {
+      .catch(function (err) {
         thinking.remove();
-        appendBubble('assistant', t('chat.error'));
-        history.push({ role: 'assistant', content: t('chat.error') });
+        var msg =
+          err && err.status
+            ? assistantErrorForStatus(err.status, err.data)
+            : t('chat.error');
+        appendBubble('assistant', msg);
+        history.push({ role: 'assistant', content: msg });
         trimHistory();
       })
       .finally(function () {

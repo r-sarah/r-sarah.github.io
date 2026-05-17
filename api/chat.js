@@ -8,15 +8,142 @@ function isMockKey(key) {
   return false;
 }
 
-function corsHeaders() {
-  const allow = (process.env.CHAT_ALLOWED_ORIGIN || '*').trim();
-  return {
-    'Access-Control-Allow-Origin': allow,
+function envInt(name, fallback, max) {
+  const n = parseInt(process.env[name] || '', 10);
+  if (!Number.isFinite(n) || n < 1) return fallback;
+  return Math.min(n, max);
+}
+
+function allowedOriginsList() {
+  const raw = (process.env.CHAT_ALLOWED_ORIGIN || '').trim();
+  if (!raw || raw === '*') return null;
+  return raw
+    .split(',')
+    .map(function (s) {
+      return s.trim();
+    })
+    .filter(Boolean);
+}
+
+function header(req, name) {
+  const v = req.headers[name] || req.headers[name.toLowerCase()];
+  return v ? String(v).trim() : '';
+}
+
+function requestOrigin(req) {
+  return header(req, 'origin');
+}
+
+function refererOrigin(req) {
+  const ref = header(req, 'referer');
+  if (!ref) return '';
+  try {
+    return new URL(ref).origin;
+  } catch (e) {
+    return '';
+  }
+}
+
+function isOriginAllowed(req) {
+  const allowed = allowedOriginsList();
+  if (!allowed || !allowed.length) return true;
+  const origin = requestOrigin(req) || refererOrigin(req);
+  if (!origin) return false;
+  return allowed.indexOf(origin) !== -1;
+}
+
+function corsHeaders(req) {
+  const allowed = allowedOriginsList();
+  const origin = requestOrigin(req);
+  const h = {
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '86400',
     Vary: 'Origin'
   };
+  if (allowed && allowed.length) {
+    if (origin && allowed.indexOf(origin) !== -1) {
+      h['Access-Control-Allow-Origin'] = origin;
+    }
+  } else {
+    h['Access-Control-Allow-Origin'] =
+      (process.env.CHAT_ALLOWED_ORIGIN || '*').trim() || '*';
+  }
+  return h;
+}
+
+function clientIp(req) {
+  const xf = header(req, 'x-forwarded-for');
+  if (xf) return xf.split(',')[0].trim() || 'unknown';
+  const real = header(req, 'x-real-ip');
+  if (real) return real;
+  if (req.socket && req.socket.remoteAddress) return String(req.socket.remoteAddress);
+  return 'unknown';
+}
+
+function upstashBase() {
+  const base = (process.env.UPSTASH_REDIS_REST_URL || '').trim().replace(/\/$/, '');
+  const token = (process.env.UPSTASH_REDIS_REST_TOKEN || '').trim();
+  if (!base || !token) return null;
+  return { base: base, token: token };
+}
+
+async function upstashIncr(key) {
+  const cfg = upstashBase();
+  if (!cfg) return null;
+  try {
+    const res = await fetch(cfg.base + '/incr/' + encodeURIComponent(key), {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + cfg.token }
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const n = data && data.result;
+    return typeof n === 'number' ? n : parseInt(n, 10);
+  } catch (e) {
+    return null;
+  }
+}
+
+async function upstashExpire(key, seconds) {
+  const cfg = upstashBase();
+  if (!cfg) return;
+  try {
+    await fetch(
+      cfg.base + '/expire/' + encodeURIComponent(key) + '/' + String(seconds),
+      {
+        method: 'POST',
+        headers: { Authorization: 'Bearer ' + cfg.token }
+      }
+    );
+  } catch (e) {}
+}
+
+async function checkRateLimit(ip) {
+  const cfg = upstashBase();
+  if (!cfg) return { ok: true, skipped: true };
+
+  const perMin = envInt('CHAT_RATE_LIMIT_PER_MIN', 10, 60);
+  const perDay = envInt('CHAT_RATE_LIMIT_PER_DAY', 50, 500);
+  const safeIp = ip.replace(/[^a-zA-Z0-9.:_-]/g, '_').slice(0, 64) || 'unknown';
+  const minuteKey = 'chat:rl:m:' + safeIp;
+  const dayKey =
+    'chat:rl:d:' +
+    safeIp +
+    ':' +
+    new Date().toISOString().slice(0, 10);
+
+  const minCount = await upstashIncr(minuteKey);
+  if (minCount === null) return { ok: true, skipped: true };
+  if (minCount === 1) await upstashExpire(minuteKey, 60);
+  if (minCount > perMin) return { ok: false, reason: 'minute' };
+
+  const dayCount = await upstashIncr(dayKey);
+  if (dayCount === null) return { ok: true, skipped: true };
+  if (dayCount === 1) await upstashExpire(dayKey, 86400);
+  if (dayCount > perDay) return { ok: false, reason: 'day' };
+
+  return { ok: true, skipped: false };
 }
 
 function mockReply(locale) {
@@ -30,6 +157,13 @@ function mockReply(locale) {
     'Mode démo : aucune clé API de production n’est configurée. ' +
     'Ajoutez OPENAI_API_KEY et CHAT_ALLOWED_ORIGIN dans les variables d’environnement de votre serveur, puis redéployez.'
   );
+}
+
+function rateLimitReply(locale) {
+  if (locale === 'en') {
+    return 'Too many messages in a short time. Please try again in a few minutes.';
+  }
+  return 'Trop de messages en peu de temps. Réessayez dans quelques minutes.';
 }
 
 async function readJsonBody(req) {
@@ -68,9 +202,14 @@ function sendJson(res, status, headers, obj) {
 }
 
 module.exports = async function handler(req, res) {
-  const headers = corsHeaders();
+  const headers = corsHeaders(req);
 
   if (req.method === 'OPTIONS') {
+    if (!isOriginAllowed(req)) {
+      res.writeHead(403, headers);
+      res.end();
+      return;
+    }
     res.writeHead(204, headers);
     res.end();
     return;
@@ -81,13 +220,35 @@ module.exports = async function handler(req, res) {
     return;
   }
 
+  if (!isOriginAllowed(req)) {
+    sendJson(res, 403, headers, { error: 'Forbidden' });
+    return;
+  }
+
   const body = await readJsonBody(req);
+  const messageLocale = body.locale === 'en' ? 'en' : 'fr';
   const message = (body.message || '').toString().trim();
-  const locale = body.locale === 'en' ? 'en' : 'fr';
   const history = Array.isArray(body.history) ? body.history : [];
+
+  const maxMessageLen = envInt('CHAT_MAX_MESSAGE_LENGTH', 1500, 4000);
+  const maxHistory = envInt('CHAT_MAX_HISTORY_MESSAGES', 10, 20);
 
   if (!message) {
     sendJson(res, 400, headers, { error: 'Missing message' });
+    return;
+  }
+
+  if (message.length > maxMessageLen) {
+    sendJson(res, 413, headers, { error: 'Message too long' });
+    return;
+  }
+
+  const rl = await checkRateLimit(clientIp(req));
+  if (!rl.ok) {
+    sendJson(res, 429, headers, {
+      error: 'Rate limit exceeded',
+      reply: rateLimitReply(messageLocale)
+    });
     return;
   }
 
@@ -96,7 +257,7 @@ module.exports = async function handler(req, res) {
     isMockKey((process.env.OPENAI_API_KEY || '').trim());
 
   if (useMock) {
-    sendJson(res, 200, headers, { reply: mockReply(locale), demo: true });
+    sendJson(res, 200, headers, { reply: mockReply(messageLocale), demo: true });
     return;
   }
 
@@ -108,7 +269,7 @@ module.exports = async function handler(req, res) {
     'You are a helpful assistant for a personal portfolio website.',
     'Answer only based on the following author-provided context when it is relevant. If the context does not contain the answer, say you do not have that information in the provided materials — do not invent facts.',
     'Keep answers concise (a few short paragraphs at most).',
-    locale === 'en' ? 'Respond in English.' : 'Répondez en français.'
+    messageLocale === 'en' ? 'Respond in English.' : 'Répondez en français.'
   ];
   if (context) {
     systemParts.push('--- Context (author-supplied) ---\n' + context);
@@ -125,9 +286,9 @@ module.exports = async function handler(req, res) {
           m.content.trim()
         );
       })
-      .slice(-20)
+      .slice(-maxHistory)
       .map(function (m) {
-        return { role: m.role, content: m.content.trim() };
+        return { role: m.role, content: m.content.trim().slice(0, maxMessageLen) };
       }),
     { role: 'user', content: message }
   ];
@@ -170,7 +331,7 @@ module.exports = async function handler(req, res) {
         ? String(data.choices[0].message.content).trim()
         : '';
 
-    sendJson(res, 200, headers, { reply: reply || mockReply(locale) });
+    sendJson(res, 200, headers, { reply: reply || mockReply(messageLocale) });
   } catch (err) {
     sendJson(res, 500, headers, { error: 'Server error' });
   }
