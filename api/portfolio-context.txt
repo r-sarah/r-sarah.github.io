@@ -33,8 +33,9 @@ PROJETS MIS EN AVANT
 2. BreastWise — mieux vivre le cancer du sein avec l’IA (projet applicatif IA/santé).
 3. SPA — vers une adoption responsable.
 4. Hackathon TalentCamp (IA).
-5. Stratégie de visibilité — La Vache Qui Rit.
-6. AeroGuide — assistance voyage intelligente (projet IA autonome).
+5. Hackathon Mirakl — Mirakl Connect Prospector (marketplace, prospection vendeurs, IA/automation).
+6. Stratégie de visibilité — La Vache Qui Rit.
+7. AeroGuide — assistance voyage intelligente (projet IA autonome).
 
 DIPLÔMES ET CERTIFICATIONS
 - Diplôme : Licence de mathématiques, Sorbonne Université (obtenue en 2025).

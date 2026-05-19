@@ -2232,6 +2232,19 @@ body.light-theme .project-content h3:hover {
   object-fit: cover;
   background: rgba(6, 8, 12, 0.76);
 }
+.project-inline-media--compact {
+  max-width: min(100%, 28rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+.project-inline-media--compact video {
+  max-height: 240px;
+  object-fit: contain;
+}
+.project-inline-media--compact figcaption {
+  font-size: 0.82rem;
+  padding: 0.65rem 0.85rem 0.85rem;
+}
 .project-inline-media figcaption {
   padding: 0.9rem 1rem 1rem;
   font-size: 0.9rem;
@@ -2515,7 +2528,8 @@ button.contact-link {
   justify-content: center;
   font-size: 0;
 }
-.contact-link-icon--svg .linkedin-logo {
+.contact-link-icon--svg .linkedin-logo,
+.contact-link-icon--svg .github-logo {
   display: block;
 }
 .contact-form {
